@@ -1,5 +1,5 @@
 TERMUX_PKG_HOMEPAGE=https://github.com/termux-user-repository/tur
-TERMUX_PKG_DESCRIPTION="Dummy test for TUR Waydroid"
+TERMUX_PKG_DESCRIPTION="Dummy test for TUR Waydroid "
 TERMUX_PKG_LICENSE="GPL-2.0"
 TERMUX_PKG_MAINTAINER="@termux-user-repository"
 TERMUX_PKG_VERSION=0.1

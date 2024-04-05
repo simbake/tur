@@ -45,12 +45,6 @@ jobs:
         # target_arch: [aarch64, arm, i686, x86_64]
       fail-fast: false
     steps:
-    - name: Install DKMS and missing modules
-      run: |
-        sudo apt update
-        sudo apt install dkms -y
-        git clone https://github.com/licy183/anbox-modules
-        cd anbox-modules && ./INSTALL.sh
     - name: Install wayland
       run: |
         sudo apt update
