@@ -27,9 +27,9 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dglx=dri
 -Dplatforms=x11
 -Ddri-drivers=
--Dgallium-drivers=swrast,zink,virgl
--Dvulkan-drivers=swrast,freedreno
--Dfreedreno-kgsl=true
+-Dgallium-drivers=swrast,zink,virgl,panfrost
+-Dvulkan-drivers=swrast,panvk
+-Dfreedreno-kgsl=false
 -Dosmesa=true
 -Dglvnd=true
 "
