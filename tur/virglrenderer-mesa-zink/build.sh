@@ -16,9 +16,9 @@ termux_step_pre_configure() {
 # Ref: https://github.com/ThieuMinh26/Proot-Setup/blob/25edeff7b45feffc4117276ef8245e94f7682766/Zink
 termux_step_make_install() {
 	sed "s|@TERMUX_PREFIX@|$TERMUX_PREFIX|g" \
-		$TERMUX_PKG_BUILDER_DIR/virgl_test_server.in > \
-		$TERMUX_PREFIX/bin/virgl_test_server
-	chmod +x $TERMUX_PREFIX/bin/virgl_test_server
+		$TERMUX_PKG_BUILDER_DIR/virgl_test_server_android.in > \
+		$TERMUX_PREFIX/bin/virgl_test_server_android
+	chmod +x $TERMUX_PREFIX/bin/virgl_test_server_android
 }
 
 termux_step_install_license() {
