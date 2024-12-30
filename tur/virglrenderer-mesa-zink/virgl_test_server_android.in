@@ -19,4 +19,4 @@ if [ x"$_additional_ld_lib_path" != x"" ]; then
 	export EPOXY_USE_ANGLE=1
 fi
 
-exec @TERMUX_PREFIX@/opt/virglrenderer/bin/virgl_test_server
+exec @TERMUX_PREFIX@/bin/virgl_test_server
