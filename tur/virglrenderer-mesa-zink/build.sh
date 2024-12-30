@@ -24,6 +24,6 @@ termux_step_make_install() {
 termux_step_install_license() {
 	mkdir -p $TERMUX_PREFIX/share/doc/$TERMUX_PKG_NAME
 	cp $TERMUX_PKG_SRCDIR/COPYING $TERMUX_PREFIX/share/doc/$TERMUX_PKG_NAME/COPYING-virglrenderer
-	cp $TERMUX_PKG_SRCDIR/libepoxy/COPYING $TERMUX_PREFIX/share/doc/$TERMUX_PKG_NAME/COPYING-libepoxy
+#	cp $TERMUX_PKG_SRCDIR/libepoxy/COPYING $TERMUX_PREFIX/share/doc/$TERMUX_PKG_NAME/COPYING-libepoxy
 	cp $TERMUX_PKG_BUILDER_DIR/COPYING-gl4es $TERMUX_PREFIX/share/doc/$TERMUX_PKG_NAME/COPYING-gl4es
 }
