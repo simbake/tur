@@ -12,10 +12,10 @@ termux_step_pre_configure() {
 	# error: using an array subscript expression within 'offsetof' is a Clang extension [-Werror,-Wgnu-offsetof-extensions]
 	# list_for_each_entry_safe(struct vrend_linked_shader_program, ent, &shader->programs, sl[shader->sel->type])
 	CPPFLAGS+=" -Wno-error=gnu-offsetof-extensions"
- sed "s|@TERMUX_PREFIX@|$TERMUX_PREFIX|g" \
-		$TERMUX_PKG_BUILDER_DIR/virgl_test_server_android.in > \
-		$TERMUX_PREFIX/bin/virgl_test_server_android
-	chmod +x $TERMUX_PREFIX/bin/virgl_test_server_android
+sed "s|@TERMUX_PREFIX@|$TERMUX_PREFIX|g" \
+$TERMUX_PKG_BUILDER_DIR/virgl_test_server_android.in > \
+$TERMUX_PREFIX/bin/virgl_test_server_android
+chmod +x $TERMUX_PREFIX/bin/virgl_test_server_android
 }
 # Ref: https://github.com/ThieuMinh26/Proot-Setup/blob/25edeff7b45feffc4117276ef8245e94f7682766/Zink
 termux_step_install_license() {
