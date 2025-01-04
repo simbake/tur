@@ -31,6 +31,11 @@ termux_step_pre_configure() {
 	if $TERMUX_ON_DEVICE_BUILD; then
 		termux_error_exit "Package '$TERMUX_PKG_NAME' is not safe for on-device builds."
 	fi
+
+	# Use prebuilt swiftshader
+	mv $TERMUX_PKG_SRCDIR/third_party/swiftshader $TERMUX_PKG_SRCDIR/third_party/swiftshader.unused
+	mkdir -p $TERMUX_PKG_SRCDIR/third_party/swiftshader/
+	cp -Rf $TERMUX_PKG_BUILDER_DIR/third_party_override/swiftshader/* $TERMUX_PKG_SRCDIR/third_party/swiftshader/
 }
 
 termux_step_configure() {
@@ -269,22 +274,35 @@ use_jumbo_build = true
 
 termux_step_make() {
 	cd $TERMUX_PKG_BUILDDIR
-	bash
 	# Build v8 snapshot in another action
-	ninja -C out/Release \
+	time ninja -C out/Release \
 						v8_context_snapshot \
 						run_mksnapshot_default \
 						run_torque \
 						generate_bytecode_builtins_list \
 						v8:run_gen-regexp-special-case
 	# Build generate steps in another action
-	ninja -C out/Release \
+	time ninja -C out/Release \
 						generate_top_domain_list_variables_file \
 						generate_chrome_colors_info \
 						character_data \
 						gen_root_store_inc \
 						generate_transport_security_state \
 						generate_top_domains_trie
+	# Build swiftshader in another action
+	time ninja -C out/Release \
+						third_party/swiftshader/src/Vulkan:icd_file \
+						third_party/swiftshader/src/Vulkan:swiftshader_libvulkan
+	# (Maybe?) Build ANGLE in another action
+	time ninja -C out/Release \
+						third_party/angle:libEGL \
+						third_party/angle:libGLESv2 \
+						third_party/angle:angle_version_info \
+						third_party/angle:angle_gpu_info_util \
+						third_party/angle:translator \
+						third_party/angle:translator_gl_d3d_only \
+						third_party/angle:angle_image_util \
+						third_party/angle:includes
 	ninja -C out/Release chromedriver chrome chrome_crashpad_handler headless_shell -k 0
 }
 

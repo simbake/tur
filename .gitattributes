@@ -31,3 +31,4 @@ top_domain_generator                binary
 torque                              binary
 transport_security_state_generator  binary
 icudtl.dat                          binary
+libvk_swiftshader.so                binary
