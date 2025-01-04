@@ -30,3 +30,4 @@ root_store_tool                     binary
 top_domain_generator                binary
 torque                              binary
 transport_security_state_generator  binary
+icudtl.dat                          binary
