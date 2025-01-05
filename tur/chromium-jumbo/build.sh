@@ -222,6 +222,8 @@ enable_rust = false
 llvm_android_mainline = true
 # Enable jumbo build (unified build)
 use_jumbo_build = true
+# Compile pdfium as a static library
+pdf_is_complete_lib = true
 " > $_common_args_file
 
 	if [ "$TERMUX_ARCH" = "arm" ]; then
@@ -293,16 +295,10 @@ termux_step_make() {
 	time ninja -C out/Release \
 						third_party/swiftshader/src/Vulkan:icd_file \
 						third_party/swiftshader/src/Vulkan:swiftshader_libvulkan
-	# (Maybe?) Build ANGLE in another action
+	# Build pdfium in another action
 	time ninja -C out/Release \
-						third_party/angle:libEGL \
-						third_party/angle:libGLESv2 \
-						third_party/angle:angle_version_info \
-						third_party/angle:angle_gpu_info_util \
-						third_party/angle:translator \
-						third_party/angle:translator_gl_d3d_only \
-						third_party/angle:angle_image_util \
-						third_party/angle:includes
+						third_party/pdfium \
+						third_party/pdfium:pdfium_public_headers
 	ninja -C out/Release chromedriver chrome chrome_crashpad_handler headless_shell -k 0
 }
 
